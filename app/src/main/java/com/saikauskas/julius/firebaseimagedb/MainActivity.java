@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else{
-            Toast.makeText(this, "No image sent, try again.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No image sent, please try again.", Toast.LENGTH_SHORT).show();
         }
     }
 
