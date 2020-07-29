@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="200dp"
         android:text="Get Images"
+        android:onClick="downloadFromDb"
         app:layout_constraintBottom_toTopOf="@+id/bttnSendImages"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

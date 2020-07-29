@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -27,12 +28,12 @@ import java.io.InputStream;
 public class MainActivity extends AppCompatActivity {
 
     Button bttnGetImg, bttnSendImg;
-    ImageView pic;
+    ImageView ivPic;
     TextView progress;
     public static final int IMAGE_RQST_CODE = 1;
 
     FirebaseStorage storage;
-    StorageReference storageRef;
+    StorageReference storageRef, uiStorageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +44,24 @@ public class MainActivity extends AppCompatActivity {
         bttnSendImg = findViewById(R.id.bttnSendImages);
         progress = findViewById(R.id.progress);
 
-        pic = findViewById(R.id.ivPic);
+        ivPic = findViewById(R.id.ivPic);
 
         storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReference();
+        storageRef = storage.getReference(); //for uploading to firebase db
+
+        uiStorageRef = FirebaseStorage.getInstance().getReference("images/2124"); //for downloading through firebase UI
 
 
 
     }
+    public void downloadFromDb(View view){
 
+        Glide.with(this)
+                .load(uiStorageRef)
+                .into(ivPic);
+        //Toast.makeText(this, "clciked", Toast.LENGTH_SHORT).show();
+
+    }
 
     public void loadImageAndSend(View view){
         Intent getImageIntent = new Intent(Intent.ACTION_PICK);
